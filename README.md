@@ -1,3 +1,3 @@
 ## Personal Website
 
-The link to this website is <a href="www.samdenlepcha.com">www.samdenlepcha.com</a>
+The link to this website is <a href="https://www.samdenlepcha.com/">www.samdenlepcha.com</a>
