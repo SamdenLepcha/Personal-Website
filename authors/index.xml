@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Authors on Samden Lepcha</title>
+    <link>/authors/</link>
+    <description>Recent content in Authors on Samden Lepcha</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <copyright>&amp;copy; {year} Samden Lepcha</copyright>
+    <lastBuildDate>Thu, 14 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Thu, 14 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/admin/</guid>
+      <description>&lt;p&gt;Welcome to my Web Site! A Little About Me.&lt;/p&gt;
+&lt;p&gt;I am a recent Computer Science graduate with a passion for data. I have always firmly believed that anyone who utilises and understands the importance of data has a great advantage over others. Today I am a data science intern at TEG Analytics and mainly work in the Healthcare Insurance domain. I am a member of the Product Development Team where we are constantly trying to build new data products that derive value and insights for our clients.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m excited about taking new challenges as a Data scientist or Business Analyst. Though I am passionate about this domain, I also love to read books and travel from time to time.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

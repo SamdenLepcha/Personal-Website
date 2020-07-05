@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Demo on Samden Lepcha</title>
+    <link>/tags/demo/</link>
+    <description>Recent content in Demo on Samden Lepcha</description>
+    <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 27 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/tags/demo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Fatigue Detection using Deep Learning</title>
+      <link>/project/deep-learning/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/project/deep-learning/</guid>
+      <description>&lt;h2 id=&#34;problem-statement&#34;&gt;Problem Statement&lt;/h2&gt;
+&lt;p&gt;The complexities of fatigue have drawn much attention from researchers across various disciplines. Short-term fatigue may cause safety issue while driving; thus, dynamic systems were designed to track driver fatigue. Longterm fatigue could lead to chronic syndromes, and eventually affect individuals physical and psychological health. Traditional methodologies of evaluating fatigue not only require sophisticated equipment but also consume enormous time.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
