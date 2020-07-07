@@ -20,6 +20,7 @@
       <guid>/project/deep-learning/</guid>
       <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 &lt;p&gt;There has been a lot of research done on drowsiness detecton in vehicles but there hasn&amp;rsquo;t been any project that could detect fatigue levels through photos in a environment outside vehicles. In this I want to talk about this project based on the &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3738045/&#34;&gt;research&lt;/a&gt; to detect fatigue levels of a person through a photograph. For this project the main facial cues used to detect fatigue levels are: Undereyes, Eyes, Mouth, Nose and Skin.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;hypothesis.JPG&#34; alt=&#34;hypothesis&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The complexities of fatigue have drawn much attention from researchers across various disciplines. Short-term fatigue may cause safety issue while driving; thus, dynamic systems were designed to track driver fatigue. Longterm fatigue could lead to chronic syndromes, and eventually affect individuals physical and psychological health. Traditional methodologies of evaluating fatigue not only require sophisticated equipment but also consume enormous time.&lt;/p&gt;
 &lt;h2 id=&#34;proposal&#34;&gt;Proposal&lt;/h2&gt;
 &lt;p&gt;Therefore , in this project the attempt was to develop a novel and efﬁcient method to predict individual’s fatigue rate by scrutinising human facial cues. The goal was to predict fatigue rate based on a single photo. This work represents a promising way to assess sleep-deprived fatigue, and the project will provide a viable and efﬁcient computational framework for user fatigue modelling in large-scale.&lt;/p&gt;
@@ -41,7 +42,9 @@
 &lt;li&gt;Medical image analysis and many more&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;OpenCV&lt;/strong&gt; is a highly optimised library designed for real time applications. So what opencv does is that it converts the input image into numbers that can be understood using the &amp;ldquo;imread&amp;rdquo; function. So this image is fed and the necessary facial landmarks are cropped out. For detection of the face in general, eyes, nose , mouth we have used a pre-trained model readily available on the Internet. This can be done using OpenCV , dlib and Python. But for undereyes there was not any readily available model therefore for this facial landmark a custom-trained object detection model was used.&lt;/p&gt;
-&lt;p&gt;But to train the model data was required therefore the faces were downloaded from online sources such as unspalsh and google images and the undereyes were marked onto them. This was performed using &lt;a href=&#34;https://github.com/tzutalin/labelImg&#34;&gt;LabelImg&lt;/a&gt; which is an open source graphical image annotation tool. Then using the Tensorflow Object Detection API the new annotated data was used to train the model. The model used for training was inception-v2 with faster rcnn which are readily available for download in the tensorflow models repository. I have used this &lt;a href=&#34;https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10&#34;&gt;tutorial&lt;/a&gt; by Evan for performing this process. This tutorial explains all the underlying steps required to train your very own object detection model.&lt;/p&gt;
+&lt;p&gt;But to train the model data was required therefore the faces were downloaded from online sources such as unspalsh and google images and the undereyes were marked onto them. This was performed using &lt;a href=&#34;https://github.com/tzutalin/labelImg&#34;&gt;LabelImg&lt;/a&gt; which is an open source graphical image annotation tool.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;LabelImg.JPG&#34; alt=&#34;LabelImg&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Then using the Tensorflow Object Detection API the new annotated data was used to train the model. The model used for training was inception-v2 with faster rcnn which are readily available for download in the tensorflow models repository. I have used this &lt;a href=&#34;https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10&#34;&gt;tutorial&lt;/a&gt; by Evan for performing this process. This tutorial explains all the underlying steps required to train your very own object detection model.&lt;/p&gt;
 &lt;p&gt;Some of the Images that were used for training the models are as follows:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;Images.JPG&#34; alt=&#34;Images&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;classificaton-phase&#34;&gt;Classificaton Phase&lt;/h3&gt;
@@ -54,7 +57,7 @@
 ![Deprived Image](Deprived Image Uploaded.JPG)
 &lt;img src=&#34;Result-D2.JPG&#34; alt=&#34;Result Image&#34;&gt;
 &lt;img src=&#34;Result-D3.JPG&#34; alt=&#34;Result Extra Image&#34;&gt;
-![Final Result Recommendation](Another Result -D1.JPG)&lt;/p&gt;
+&lt;img src=&#34;Recon.JPG&#34; alt=&#34;Final Result Recommendation&#34;&gt;&lt;/p&gt;
 </description>
     </item>
     
