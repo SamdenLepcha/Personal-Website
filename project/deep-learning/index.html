@@ -542,10 +542,43 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      <h2 id="problem-statement">Problem Statement</h2>
+      <h2 id="background">Background</h2>
+<p>There has been a lot of research done on drowsiness detecton in vehicles but there hasn&rsquo;t been any project that could detect fatigue levels through photos in a environment outside vehicles. In this I want to talk about this project based on the <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3738045/">research</a> to detect fatigue levels of a person through a photograph. For this project the main facial cues used to detect fatigue levels are: Undereyes, Eyes, Mouth, Nose and Skin.</p>
 <p>The complexities of fatigue have drawn much attention from researchers across various disciplines. Short-term fatigue may cause safety issue while driving; thus, dynamic systems were designed to track driver fatigue. Longterm fatigue could lead to chronic syndromes, and eventually affect individuals physical and psychological health. Traditional methodologies of evaluating fatigue not only require sophisticated equipment but also consume enormous time.</p>
-<h2 id="our-proposal">Our Proposal</h2>
-<p>In this project, we attempt to develop a novel and efﬁcient method to predict individual’s fatigue rate by scrutinising human facial cues. Our goal is to predict fatigue rate based on a single photo. Our work represents a promising way to assess sleep-deprived fatigue, and our project will provide a viable and efﬁcient computational framework for user fatigue modelling in large-scale.</p>
+<h2 id="proposal">Proposal</h2>
+<p>Therefore , in this project the attempt was to develop a novel and efﬁcient method to predict individual’s fatigue rate by scrutinising human facial cues. The goal was to predict fatigue rate based on a single photo. This work represents a promising way to assess sleep-deprived fatigue, and the project will provide a viable and efﬁcient computational framework for user fatigue modelling in large-scale.</p>
+<p>Going over the architecture and the working of the system. In the picture below you can see the entire flow of the project or web application. 
+<img src="architecture.png" alt="Architecture Image"></p>
+<p>In the beginning the input which is an image of a face is taken and fed into the system. The various facial cues that have been used for detecting the fatigue levels are then cropped out from the image and then fed into individual custom trained classification models which detect and output the fatigue levels. You can find the installation instructions and the steps to run the code in my <a href="https://github.com/SamdenLepcha/Fatigue-Detection-using-Deep-Learning">Github repo</a>.</p>
+<p>That is in essence the high level gist of the project. But there were several technologies and individual processes that were done to bring the project together. These can be broadly divided into three phases. They are:</p>
+<ol>
+<li>Image Ingestion and Object Detection</li>
+<li>Classification</li>
+<li>Deployment</li>
+</ol>
+<h3 id="image-ingestion-and-object-detection-phase">Image Ingestion and Object Detection Phase</h3>
+<p>This phase was performed using the famous computer vision library <a href="https://opencv.org/">&ldquo;OpenCV&rdquo;</a>. There are many numerous applications of OpenCV. Some of them are:</p>
+<ul>
+<li>Face Recogniton</li>
+<li>Object Detection</li>
+<li>Street view image stitching</li>
+<li>Medical image analysis and many more</li>
+</ul>
+<p><strong>OpenCV</strong> is a highly optimised library designed for real time applications. So what opencv does is that it converts the input image into numbers that can be understood using the &ldquo;imread&rdquo; function. So this image is fed and the necessary facial landmarks are cropped out. For detection of the face in general, eyes, nose , mouth we have used a pre-trained model readily available on the Internet. This can be done using OpenCV , dlib and Python. But for undereyes there was not any readily available model therefore for this facial landmark a custom-trained object detection model was used.</p>
+<p>But to train the model data was required therefore the faces were downloaded from online sources such as unspalsh and google images and the undereyes were marked onto them. This was performed using <a href="https://github.com/tzutalin/labelImg">LabelImg</a> which is an open source graphical image annotation tool. Then using the Tensorflow Object Detection API the new annotated data was used to train the model. The model used for training was inception-v2 with faster rcnn which are readily available for download in the tensorflow models repository. I have used this <a href="https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10">tutorial</a> by Evan for performing this process. This tutorial explains all the underlying steps required to train your very own object detection model.</p>
+<p>Some of the Images that were used for training the models are as follows:</p>
+<p><img src="Images.JPG" alt="Images"></p>
+<h3 id="classificaton-phase">Classificaton Phase</h3>
+<p>After these individual images were cropped they were fed into classification models for training. These trained models would then be used later on for classifying new images. For the classification aspect of the facial cues <strong>EfficientNet</strong> was used which is a very powerful architecture. Unlike traditional CNN architecture which scale network dimensions, such as width, depth and resolution EfficientNet uniformly scales each dimension with a fixed set of scaling coefficients. More details can be found in this <a href="https://ai.googleblog.com/2019/05/efficientnet-improving-accuracy-and.html">article</a>.</p>
+<p><img src="efficientnet.JPG" alt="EfficientNet"></p>
+<p>An image from the blog which talks about the various scaling approaches.</p>
+<h2 id="deployment-phase">Deployment Phase</h2>
+<p>For the deployment of the entire project the <strong>&ldquo;Flask API&rdquo;</strong> was used. It is an open-source micro web framework written in Python that is widely used for deployment purposes. For the front end or UI of the web application HTML/CSS was used. After each model derives the final results were calculated as a weighted sum of the facial cues.</p>
+<p>Some of the screenshots of the project can be found below:
+![Deprived Image](Deprived Image Uploaded.JPG)
+<img src="Result-D2.JPG" alt="Result Image">
+<img src="Result-D3.JPG" alt="Result Extra Image">
+<img src="Result-ND1.JPG" alt="Final Result Recommendation"></p>
 
     </div>
 
