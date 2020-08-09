@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academia 4.3.1">
+  <meta name="generator" content="Hugo 0.73.0" />
+
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Samden Lepcha">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="This was a deep learning project to detect potholes on roads and map them onto Google Maps.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="/blogs/pothole-detection-mask-rcnn/">
+
+  
+
+
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#fc6f5c">
+  
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.8.6/css/academicons.min.css" integrity="sha256-uFVgMKfistnJAfoCUQigIl+JfUaP47GrRKjf6CTPVmw=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" integrity="sha256-ygkqlh3CYSUri3LhQxzdcm0n1EQvH2Y+U5S2idbLtxs=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+  
+
+  
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Open+Sans|Roboto+Mono&display=swap">
+  
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/academia.min.4e3b2f408b00c06405993e164c128cb2.css">
+
+  
+
+  
+  
+  
+
+  
+
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="icon" type="image/png" href="/img/icon.png">
+  <link rel="apple-touch-icon" type="image/png" href="/img/icon-192.png">
+
+  <link rel="canonical" href="/blogs/pothole-detection-mask-rcnn/">
+
+  
+  
+  
+  
+    
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="twitter:site" content="@Samden_Lepcha">
+  <meta property="twitter:creator" content="@Samden_Lepcha">
+  
+  <meta property="og:site_name" content="Samden Lepcha">
+  <meta property="og:url" content="/blogs/pothole-detection-mask-rcnn/">
+  <meta property="og:title" content="Pothole Detection with Mask RCNN | Samden Lepcha">
+  <meta property="og:description" content="This was a deep learning project to detect potholes on roads and map them onto Google Maps."><meta property="og:image" content="/blogs/pothole-detection-mask-rcnn/featured.jpg">
+  <meta property="twitter:image" content="/blogs/pothole-detection-mask-rcnn/featured.jpg"><meta property="og:locale" content="en-us">
+  
+  <meta property="article:published_time" content="2020-07-13T00:00:00&#43;00:00">
+  
+  <meta property="article:modified_time" content="2020-07-13T00:00:00&#43;00:00">
+  
+
+  
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+<script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#fc6f5c",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#fc6f5c"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "/privacy/"
+      }
+    })});
+</script>
+
+
+
+  
+
+
+
+<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+
+  <title>Pothole Detection with Mask RCNN | Samden Lepcha</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-target="#TableOfContents" data-offset="71" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+<nav class="navbar navbar-light fixed-top navbar-expand-lg py-0" id="navbar-main">
+  <div class="container">
+
+    
+      <a class="navbar-brand" href="/">Samden Lepcha</a>
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+    
+    <div class="collapse navbar-collapse" id="navbar">
+
+      
+      
+      <ul class="navbar-nav ml-auto">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#blogs"><span>Blog</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+
+        
+
+        
+
+        
+        <li class="nav-item">
+          <a class="nav-link js-dark-toggle" href="#"><i class="fas fa-moon" aria-hidden="true"></i></a>
+        </li>
+        
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+  <article class="article py-5" itemscope itemtype="http://schema.org/Article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="container split-header">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+        <img class="img-fluid w-100" src="/blogs/pothole-detection-mask-rcnn/featured_hue37b3a1a79b416de9b57bebecc7e8f87_3361713_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span
+          class="article-header-caption">Photo by Marc-Olivier Jodoin on Unsplash</span>
+    </div>
+    <div class="col-lg-8">
+      <h1 itemprop="name">Pothole Detection with Mask RCNN</h1>
+
+      
+
+      
+
+
+
+<meta content="2020-07-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-07-13 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    <time>Jul 13, 2020</time>
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <a href="/blogs/pothole-detection-mask-rcnn/#disqus_thread"></a>
+  
+
+  
+  
+
+  
+    
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=/blogs/pothole-detection-mask-rcnn/&amp;text=Pothole%20Detection%20with%20Mask%20RCNN" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=/blogs/pothole-detection-mask-rcnn/&amp;t=Pothole%20Detection%20with%20Mask%20RCNN" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Pothole%20Detection%20with%20Mask%20RCNN&amp;body=/blogs/pothole-detection-mask-rcnn/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=/blogs/pothole-detection-mask-rcnn/&amp;title=Pothole%20Detection%20with%20Mask%20RCNN" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://web.whatsapp.com/send?text=Pothole%20Detection%20with%20Mask%20RCNN%20/blogs/pothole-detection-mask-rcnn/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://reddit.com/submit?url=/blogs/pothole-detection-mask-rcnn/&amp;title=Pothole%20Detection%20with%20Mask%20RCNN" target="_blank" rel="noopener" class="share-btn-reddit">
+          <i class="fab fa-reddit-alien"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+  
+
+</div>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    
+    </div>
+  </div>
+</div>
+
+  <div class="article-container">
+
+    <div class="article-style" itemprop="articleBody">
+      <h3 id="background">Background</h3>
+<p>According to Wikipedia &ldquo;A pothole is a depression in a road surface, usually asphalt pavement, where traffic has removed broken pieces of the pavement&rdquo;. Edmonton the &ldquo;self proclaimed pothole capital&rdquo; in Alberta, Canada reportedly spends $4.8 million on 450,000 potholes annually, as of 2015. In India every year approximately 1100 lives are lost to accidents caused by potholes <a href="https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24">source</a>. Ordinary citizens do not have the means of communicating or reporting the bad roads to the concerned authorities while the authorities lay unaware of the situation.</p>
+<p>Therefore, several organisations have been trying to develop tools (like webapps) where the citizens can report the potholes to the concerned authorities. There are several hackathons that have taken place with this project in mind as one of the objectives. Seeing this as a growing concern, in this project to address this problem the aim is to <strong>Develop a simple interface that uses the state of the art object detection technology to detect potholes in real time and report them using Google Maps</strong>. This article will take you through the steps required to build your very own pothole detection system. The deployment medium for this project will be on smartphones which are used by 500 million+ people in India according to Newzoo&rsquo;s 2019 Global Mobile Market Report.</p>
+<p>Tools Used:</p>
+<ul>
+<li>Python 3.6+</li>
+<li>Tensorflow Object Detection API</li>
+<li>Pixel Annotation Tool</li>
+<li>Anaconda Package Manager</li>
+<li>Flask</li>
+</ul>
+<p>The workflow of the Project will be as follows:</p>
+<ul>
+<li>Environment Setup</li>
+<li>Dataset Gathering</li>
+<li>Model Training</li>
+<li>Deployment with Flask</li>
+<li>Mapping onto Google Maps</li>
+<li>Results</li>
+</ul>
+<h3 id="anaconda-environment-setup">Anaconda Environment Setup</h3>
+<p>In the Beginning we will setup a new Anaconda environment and install all the necessary packages required for this project. Anaconda is a popular python package manager alongside &ldquo;pip&rdquo;. If you have not installed prior to this project please install it using this link.</p>
+<p>It is a fairly straight forward installation and should not take long. You can install the <a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> if you have some experience using the command line but if you want the GUI you can install the <a href="https://www.anaconda.com/products/individual">Anaconda Navigator</a> with all the additional packages (this will take longer to install).</p>
+<p>After this open &ldquo;Anaconda Prompt&rdquo; from your start menu and follow the rest of the installation instructions:</p>
+<ol>
+<li>Create the conda environment.</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(base) C:\Users&gt;conda create --name pothole python=3.6
+</code></pre><ol start="2">
+<li>Activate the environment and upgrade pip.</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(base) C:\Users&gt;activate pothole
+(pothole) C:\Users&gt;python -m pip install --upgrade pip
+</code></pre><ol start="3">
+<li>Install the other necessary packages by issuing the following commands:</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;conda install -c anaconda protobuf
+(pothole) C:\Users&gt;pip install pillow
+(pothole) C:\Users&gt;pip install lxml
+(pothole) C:\Users&gt;pip install Cython
+(pothole) C:\Users&gt;pip install contextlib2
+(pothole) C:\Users&gt;pip install jupyter
+(pothole) C:\Users&gt;pip install matplotlib
+(pothole) C:\Users&gt;pip install opencv-python
+(pothole) C:\Users&gt;pip install labelme
+(pothole) C:\Users&gt;pip install tensorflow-gpu==1.13.1
+(pothole) C:\Users&gt;pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
+</code></pre><ol start="4">
+<li>Clone or download the tensorflow object detection api repostiory from Github. For the purpose of this project we are using tensorflow version 1.13.1. <strong>Note Always make sure the tensorflow version installed and the tensorflow object detection api repository version is the same</strong>. Run the following command or download this <a href="https://github.com/tensorflow/models/tree/r1.13.0">repository</a> manually.</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;git clone https://github.com/tensorflow/models/tree/r1.13.0.git
+</code></pre><p>Place these folders in a folder called &ldquo;models&rdquo;. You can place this &ldquo;models&rdquo; folder in a directory of your choice.</p>
+<ol start="5">
+<li>Configure the PYTHONPATH environment variable:</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;set PYTHONPATH=C:\models;C:\models\research;C:\models\research\slim
+</code></pre><p>Change the directory location based on where you have store the models folder.</p>
+<ol start="6">
+<li>Compile Protobufs and run setup.py</li>
+</ol>
+<p>In the Ananconda Prompt change directories to \models\research directory:</p>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;cd C:\models\research
+</code></pre><ol start="7">
+<li>Run the following lines of code:</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">protoc --python_out=. .\object_detection\protos\anchor_generator.proto .\object_detection\protos\argmax_matcher.proto .\object_detection\protos\bipartite_matcher.proto .\object_detection\protos\box_coder.proto .\object_detection\protos\box_predictor.proto .\object_detection\protos\eval.proto .\object_detection\protos\faster_rcnn.proto .\object_detection\protos\faster_rcnn_box_coder.proto .\object_detection\protos\grid_anchor_generator.proto .\object_detection\protos\hyperparams.proto .\object_detection\protos\image_resizer.proto .\object_detection\protos\input_reader.proto .\object_detection\protos\losses.proto .\object_detection\protos\matcher.proto .\object_detection\protos\mean_stddev_box_coder.proto .\object_detection\protos\model.proto .\object_detection\protos\optimizer.proto .\object_detection\protos\pipeline.proto .\object_detection\protos\post_processing.proto .\object_detection\protos\preprocessor.proto .\object_detection\protos\region_similarity_calculator.proto .\object_detection\protos\square_box_coder.proto .\object_detection\protos\ssd.proto .\object_detection\protos\ssd_anchor_generator.proto .\object_detection\protos\string_int_label_map.proto .\object_detection\protos\train.proto .\object_detection\protos\keypoint_box_coder.proto .\object_detection\protos\multiscale_anchor_generator.proto .\object_detection\protos\graph_rewriter.proto .\object_detection\protos\calibration.proto .\object_detection\protos\flexible_grid_anchor_generator.proto
+</code></pre><p>If it gives an error that the protobuf file could not be found run this after:</p>
+<pre><code class="language-{r" data-lang="{r">protoc object_detection/protos/*.proto --python_out=.
+</code></pre><p>Finally we need to run the following commands:</p>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\models\research&gt; python setup.py build
+(pothole) C:\models\research&gt; python setup.py install
+</code></pre><ol start="8">
+<li>You can test if everything is working out by running the IPython Notebook present in the object_detection folder called &ldquo;object_detection_tutorial.ipynb&rdquo;.</li>
+</ol>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\models\research&gt;cd object_detection
+(pothole) C:\models\research\object_detection&gt;jupyter notebook object_detection_tutorial.ipynb
+</code></pre><h3 id="dataset-gathering">Dataset Gathering</h3>
+<p>As always in the beginning of any Data Science or AI Project after the problem statement has been identified we move on to gathering the data or in this case images for training.</p>
+<p>To train a robust model we need to use a lot of pictures but with variation as well. That means the potholes must be present at various angles or shapes so that our model does not lean on to one variation or in other words overfits and does not generalise for other images.</p>
+<p>You can use the images that you have taken personally or download them from the Internet like me. For this project the idea is to detect potholes so we would not be segmenting them out based on severity but that does leave something for future scope as well. The following data sources were used for building this project:</p>
+<ul>
+<li><a href="https://www.kaggle.com/atulyakumar98/pothole-detection-dataset?select=potholes">Kaggle</a></li>
+<li><a href="https://www.researchgate.net/publication/282807920_Dataset_of_images_used_for_pothole_detection">Research Gate</a></li>
+</ul>
+<p>Some of the Images used in this dataset looks this:
+<img src="gallery/Dataset.jpg" alt="Some of the Images in the dataset"></p>
+<p>We need to resize the images so that the model can be train using these resized images like 800 x 600 in this project (Unless you have unlimited GPU compute power). Use either the command prompt or anaconda prompt or any other IDE to run this script. For example in Anaconda Prompt:</p>
+<pre><code class="language-{r" data-lang="{r">(base) C:\Users&gt; python DatasetCreation.py
+</code></pre><p>The above mentioned script is available is in my Github Repo. This script will resize all the images in your directory and also perform random Train/Test Split with 80/20 splitting criteria. Now place these images inside models/research/object_detection/images to have all the data for this project in one place.</p>
+<h3 id="data-labeling">Data Labeling</h3>
+<p>Now that we have gathered the dataset we need to label the images so that the model understands what is a pothole. To label the images we need a labeling software.</p>
+<p>For the purpose of project, I have used labelme as it is fairly simple to use. In your anaconda environment type &ldquo;labelme&rdquo; and the software should open up like below.</p>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;labelme
+</code></pre><p>Open you image from your directory and click on Create Polygon and start labeling your images. Labelme saves your labels as json files with the same name as the image name. Place the json in the same directory as your images. An example of Labelme(right) along with Pixel Annotation Tool(left) is shown below. For this project I have labeled 400 images.</p>
+<p><img src="gallery/Labeling.jpg" alt="Some of the Images in the dataset"></p>
+<h3 id="model-training">Model Training</h3>
+<ol>
+<li>Create TFRecords:</li>
+</ol>
+<p>After labeling our entire dataset we now have to generate TFRecords which serves as input for our model training. But before that we need to convert the json labelme labels into COCO format. 
+I have taken the script provided by Gilber Tanner in his tutorial to perform this. You can also find this in my Github Repository labeled &ldquo;labelme2coco.py&rdquo;. Download this and place it onto the directory where your Train/ Test images are located. Now run the following commands:</p>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users\models\research\object_detection\images&gt;python labelme2coco.py train --output train.json
+(pothole) C:\Users\models\research\object_detection\images&gt;python labelme2coco.py test --output test.json
+</code></pre><p>Now that the train/test data is in the COCO format we can now create the TFRecords using the create_coco_tf_record.py also created by Gilber Tanner. This script also needs to be placed and run from the object_detection folder.</p>
+<pre><code class="language-{r" data-lang="{r">python create_coco_tf_record.py --logtostderr --train_image_dir=images/train --test_image_dir=images/test --train_annotations_file=images/train.json --test_annotations_file=images/test.json --include_masks=True --output_dir=./
+</code></pre><p>You should find train.record and test.record in your object_detection folder.</p>
+<ol start="2">
+<li>Creating Label Map</li>
+</ol>
+<p>The label map links class names to ID numbers. Use a text editor like Sublime Text to create a &ldquo;labelmap.pbtxt&rdquo; and store it inside object_detection/training folder. Inside the folder write the following:</p>
+<pre><code>  item {
+  id: 1
+  name: 'Pothole'
+}
+</code></pre><p>You can define as much as you want depending on the classes you want to detect but for the purpose of this project we are only interested in detecting potholes.</p>
+<p>This id should match with the id mentioned in your train.json and test.json files. Notice how it one number greater i.e here it is id: 0 but we mention id:1 in the labelmap file.</p>
+<pre><code>&quot;categories&quot;: [
+    {
+        &quot;supercategory&quot;: &quot;Pothole&quot;,
+        &quot;id&quot;: 0,
+        &quot;name&quot;: &quot;Pothole&quot;
+    },
+],
+</code></pre><ol start="3">
+<li>Creating Training Configuration File:</li>
+</ol>
+<p>Now we need to create a training configuration file. From the <a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md">tensorflow model zoo</a> there are a variety of tensorflow models available for Mask RCNN but for the purpose of this project we are gonna use the <a href="http://download.tensorflow.org/models/object_detection/mask_rcnn_inception_v2_coco_2018_01_28.tar.gz">mask_rcnn_inception_v2_coco</a> because of it&rsquo;s speed. Download this and place it onto the object_detection folder. You can find the  mask_rcnn_inception_v2_coco.config file inside the samples/config folder. Copy this folder and place it into object_detection/training folder. Now we have to make the following changes to this config file:</p>
+<ul>
+<li>
+<p>Line 10: Change num_classes to the number of different objects you want the classifier to detect.(1 in this project&rsquo;s case)</p>
+</li>
+<li>
+<p>Line 126: Change fine_tune_checkpoint to:</p>
+</li>
+</ul>
+<pre><code>fine_tune_checkpoint: &quot;&lt;path&gt;/models/research/object_detection/mask_rcnn_inception_v2_coco_2018_01_28/model.ckpt&quot;
+</code></pre><ul>
+<li>Line 142: Change input_path to the path of the train.records file:</li>
+</ul>
+<pre><code>input_path: &quot;&lt;path&gt;/models/research/object_detection/train.record&quot;
+</code></pre><ul>
+<li>Line 158: Change input_path to the path of the test.records file:
+`</li>
+</ul>
+<pre><code>input_path: &quot;&lt;path&gt;/models/research/object_detection/test.record&quot;
+</code></pre><ul>
+<li>Line 144 and 160: Change label_map_path to the path of the label map:</li>
+</ul>
+<pre><code>label_map_path: &quot;&lt;path&gt;/models/research/object_detection/training/labelmap.pbtxt&quot;
+</code></pre><ul>
+<li>Line 150: change num_example to the number of images in your test folder.</li>
+</ul>
+<ol start="4">
+<li>Training the Model:</li>
+</ol>
+<p>Run the following command to start the training of the model from the object_detection folder:</p>
+<pre><code>python legacy/train.py --train_dir=training --pipeline_config_path=training/mask_rcnn_inception_v2_coco.config
+</code></pre><p>After every interval the model saves the checkpoints in the training folder. It is a good idea to let it train till the loss is below 0.05. The time taken will depend on how powerful your GPU is.</p>
+<p>You can view the progress of your model by opening another Anaconda Prompt Window and changing the directory to the object_detection folder and typing the following command:</p>
+<pre><code>(pothole) C:\models\research\object_detection&gt;tensorboard --logdir=training
+</code></pre><p>This will create a webpage on your local machine YourPCName:6006, which can be viewed through a web browser. The TensorBoard page provides information and graphs that show how the training is progressing.</p>
+<p><img src="gallery/loss_graph.JPG" alt="Tensorboard model training"></p>
+<p>You can stop the training by pressing Ctrl+C while in the command prompt window. I recommend stopping after it has created the checkpoint in your folder this usually is done every 5-10 mins depending on your compute power. The checkpoint at the highest number of steps will be used to generate the frozen inference graph.</p>
+<ol start="5">
+<li>Exporting Inference Graph</li>
+</ol>
+<p>Create a folder called &ldquo;inference_graph&rdquo; inside object_detection folder. Now we can create the frozen inference graph(.pb file) inside this folder. To do this issue the following command:</p>
+<pre><code>python export_inference_graph.py --input_type=image_tensor --pipeline_config_path=training/mask_rcnn_inception_v2_coco.config --trained_checkpoint_prefix=training/model.ckpt-2194 --output_directory=inference_graph
+</code></pre><p>This frozen inference graph is the object detection classifier.</p>
+<ol start="6">
+<li>Testing the newly trained classifier</li>
+</ol>
+<p>To test the newly trained classifer you can make changes to the already existing object_detection.ipynb file or use the eval.ipynb file present in my Github Repo.</p>
+<p>Change the directory location for the labelmap, inference_graph, .config file and the test_images directory based on your location. You should get the follwing output:</p>
+<p><img src="gallery/Test.JPG" alt="Testing Image"></p>
+<h3 id="references">References</h3>
+<ol>
+<li>Over 9300 deaths, 25000 injured in 3 years due to potholes - <a href="https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24">India Today</a></li>
+<li>Nienaber, S &amp; Booysen, M.J. (Thinus) &amp; Kroon, RS. (2015). <a href="https://www.researchgate.net/publication/282807920_Dataset_of_images_used_for_pothole_detection?channel=doi&amp;linkId=561ccc7b08ae78721fa2b350&amp;showFulltext=true">Dataset of images used for pothole detection. 10.13140/RG.2.1.3646.1520</a></li>
+<li>How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU) on Windows 10 - <a href="https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10">Github</a></li>
+<li>Custom Mask RCNN using Tensorflow Object Detection API - <a href="https://medium.com/@vijendra1125/custom-mask-rcnn-using-tensorflow-object-detection-api-101149ce0765">Medium</a></li>
+<li>Train a Mask R-CNN model with the Tensorflow Object Detection API - <a href="https://gilberttanner.com/blog/train-a-mask-r-cnn-model-with-the-tensorflow-object-detection-api">Gilbert Tanner</a></li>
+</ol>
+
+    </div>
+
+    
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tags/deep-learning/">Deep Learning</a>
+  
+</div>
+
+
+
+    
+      
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+  
+    
+  
+  
+  <div class="media author-card" itemscope itemtype="http://schema.org/Person">
+    
+
+    <div class="media-body">
+      <h5 class="card-title" itemprop="name"><a href="/">Samden Lepcha</a></h5>
+      <h6 class="card-subtitle">Data Science Intern</h6>
+      <p class="card-text" itemprop="description">My Interests include Data Analytics, Artificial Intelligence, Data Engineering.</p>
+      <ul class="network-icon" aria-hidden="true">
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="/#contact" >
+              <i class="fas fa-envelope"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://www.instagram.com/sam.lepcha/" target="_blank" rel="noopener">
+              <i class="fab fa-instagram"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://www.linkedin.com/in/samden-lepcha/" target="_blank" rel="noopener">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
+        
+          
+          
+          
+            
+          
+          
+          
+          
+          
+            
+          
+          <li>
+            <a itemprop="sameAs" href="https://github.com/SamdenLepcha" target="_blank" rel="noopener">
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+
+      
+      
+      <div class="article-widget">
+        <div class="hr-light"></div>
+        <h3>Related</h3>
+        <ul>
+          
+          <li><a href="/blogs/fatigue-detection/">Fatigue Detection using Deep Learning</a></li>
+          
+        </ul>
+      </div>
+      
+    
+
+    
+    <div class="article-widget">
+      
+<div class="post-nav">
+  
+  
+  
+  <div class="post-nav-item">
+    <div class="meta-nav">Previous</div>
+    <a href="/blogs/fatigue-detection/" rel="prev">Fatigue Detection using Deep Learning</a>
+  </div>
+  
+</div>
+
+    </div>
+    
+
+    
+<section id="comments">
+  <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "samdenlepcha-com" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+
+
+
+  </div>
+</article>
+
+      
+
+    
+    
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" integrity="sha256-X5PoE3KU5l+JcX+w09p/wHl9AzK333C4hJ2I9S5mD4M=" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js" integrity="sha256-aYTdUrn6Ow1DDgh5JTc3aDGnnju48y/1c8s1dgkYPQ8=" crossorigin="anonymous"></script>
+        
+      
+
+      
+      
+    
+
+    
+    
+
+    
+    
+    
+    <script id="dsq-count-scr" src="//samdenlepcha-com.disqus.com/count.js" async></script>
+    
+
+    
+    
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    
+
+    
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script src="/js/academia.min.7276a6a3624de715a5c7f54c7c07696d.js"></script>
+
+    
+
+
+
+
+
+
+  
+  <div class="container">
+    <footer class="site-footer">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <p>
+          © 2020 Samden Lepcha &middot; 
+        </p>
+      </div>
+      <div class="col-md-6">
+        <ul class="list-inline network-icon text-right">
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://twitter.com/Samden_Lepcha" target="_blank" rel="noopener" title="DM Me"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/SamdenLepcha" target="_blank" rel="noopener" title="Follow Me"><i class="fab fa-github" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.linkedin.com/in/samden-lepcha/" target="_blank" rel="noopener" title="Connect With me"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://www.instagram.com/sam.lepcha/" target="_blank" rel="noopener" title="DM Me"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

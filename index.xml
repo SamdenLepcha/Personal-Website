@@ -22,20 +22,20 @@
     </item>
     
     <item>
+      <title>post</title>
+      <link>/blogs/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/blogs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Courses</title>
       <link>/courses/</link>
       <pubDate>Sun, 05 May 2019 00:00:00 +0100</pubDate>
       
       <guid>/courses/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>/project/</link>
-      <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/project/</guid>
       <description></description>
     </item>
     
@@ -54,15 +54,6 @@
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>/slides/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>post</title>
-      <link>/blogs/</link>
-      <pubDate>Mon, 28 Jan 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/blogs/</guid>
       <description></description>
     </item>
     

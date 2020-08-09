@@ -7,23 +7,56 @@
     <generator>Source Themes academia (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <copyright>&amp;copy; {year} Samden Lepcha</copyright>
-    <lastBuildDate>Sat, 27 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	    <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Pothole Detection with Mask RCNN</title>
+      <link>/project/pothole-detection-mask-rcnn/</link>
+      <pubDate>Mon, 13 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/project/pothole-detection-mask-rcnn/</guid>
+      <description>&lt;h3 id=&#34;background&#34;&gt;Background&lt;/h3&gt;
+&lt;p&gt;According to Wikipedia &amp;ldquo;A pothole is a depression in a road surface, usually asphalt pavement, where traffic has removed broken pieces of the pavement&amp;rdquo;. Edmonton the &amp;ldquo;self proclaimed pothole capital&amp;rdquo; in Alberta, Canada reportedly spends $4.8 million on 450,000 potholes annually, as of 2015. In India every year approximately 1100 lives are lost to accidents caused by potholes &lt;a href=&#34;https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24&#34;&gt;source&lt;/a&gt;. Ordinary citizens do not have the means of communicating or reporting the bad roads to the concerned authorities while the authorities lay unaware of the situation.&lt;/p&gt;
+&lt;p&gt;Therefore, several organisations have been trying to develop tools (like webapps) where the citizens can report the potholes to the concerned authorities. There are several hackathons that have taken place with this project in mind as one of the objectives. Seeing this as a growing conecern in this project to address this problem the aim is to &lt;strong&gt;Develop a simple interface that uses the state of the art object detection technology to detect potholes in real time and report them using Google Maps&lt;/strong&gt;. This article will take you through the steps required to build your very own pothole detection system. The deployment medium for this project will be on smartphones which are used by 500 million+ people in India according to Newzoo&amp;rsquo;s 2019 Global Mobile Market Report.&lt;/p&gt;
+&lt;p&gt;Tools Used:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Python 3.6+&lt;/li&gt;
+&lt;li&gt;Tensorflow Object Detection API&lt;/li&gt;
+&lt;li&gt;Pixel Annotation Tool&lt;/li&gt;
+&lt;li&gt;Anaconda Package Manager&lt;/li&gt;
+&lt;li&gt;Flask&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The workflow of the Project will be as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dataset Gathering and Labeling&lt;/li&gt;
+&lt;li&gt;Model Traning&lt;/li&gt;
+&lt;li&gt;Deployment with Flask&lt;/li&gt;
+&lt;li&gt;Mapping onto Google Maps&lt;/li&gt;
+&lt;li&gt;Results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;heading&#34;&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;Over 9300 deaths, 25000 injured in 3 years due to potholes - &lt;a href=&#34;https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24&#34;&gt;India Today&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Fatigue Detection using Deep Learning</title>
-      <link>/project/deep-learning/</link>
+      <link>/project/fatigue-detection/</link>
       <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/project/deep-learning/</guid>
+      <guid>/project/fatigue-detection/</guid>
       <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;
 &lt;p&gt;There has been a lot of research done on drowsiness detecton in vehicles but there hasn&amp;rsquo;t been any project that could detect fatigue levels through photos in a environment outside vehicles. In this I want to talk about this project based on the &lt;a href=&#34;https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3738045/&#34;&gt;research&lt;/a&gt; to detect fatigue levels of a person through a photograph. For this project the main facial cues used to detect fatigue levels are: Undereyes, Eyes, Mouth, Nose and Skin.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;hypothesis.JPG&#34; alt=&#34;hypothesis&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The complexities of fatigue have drawn much attention from researchers across various disciplines. Short-term fatigue may cause safety issue while driving; thus, dynamic systems were designed to track driver fatigue. Longterm fatigue could lead to chronic syndromes, and eventually affect individuals physical and psychological health. Traditional methodologies of evaluating fatigue not only require sophisticated equipment but also consume enormous time.&lt;/p&gt;
 &lt;h2 id=&#34;proposal&#34;&gt;Proposal&lt;/h2&gt;
-&lt;p&gt;Therefore , in this project the attempt was to develop a novel and efﬁcient method to predict individual’s fatigue rate by scrutinising human facial cues. The goal was to predict fatigue rate based on a single photo. This work represents a promising way to assess sleep-deprived fatigue, and the project will provide a viable and efﬁcient computational framework for user fatigue modelling in large-scale.&lt;/p&gt;
+&lt;p&gt;Therefore ,in this project the attempt was to develop a novel and efﬁcient method to predict individual’s fatigue rate by scrutinising human facial cues. The goal was to predict fatigue rate based on a single photo. This work represents a promising way to assess sleep-deprived fatigue, and the project will provide a viable and efﬁcient computational framework for user fatigue modelling in large-scale.&lt;/p&gt;
 &lt;p&gt;Going over the architecture and the working of the system. In the picture below you can see the entire flow of the project or web application. 
 &lt;img src=&#34;architecture.png&#34; alt=&#34;Architecture Image&#34;&gt;&lt;/p&gt;
 &lt;p&gt;In the beginning the input which is an image of a face is taken and fed into the system. The various facial cues that have been used for detecting the fatigue levels are then cropped out from the image and then fed into individual custom trained classification models which detect and output the fatigue levels. You can find the installation instructions and the steps to run the code in my &lt;a href=&#34;https://github.com/SamdenLepcha/Fatigue-Detection-using-Deep-Learning&#34;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
@@ -41,20 +74,20 @@
 &lt;li&gt;Street view image stitching&lt;/li&gt;
 &lt;li&gt;Medical image analysis and many more&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;OpenCV&lt;/strong&gt; is a highly optimised library designed for real time applications. So what opencv does is that it converts the input image into numbers that can be understood using the &amp;ldquo;imread&amp;rdquo; function. So this image is fed and the necessary facial landmarks are cropped out. For detection of the face in general, eyes, nose , mouth we have used a pre-trained model readily available on the Internet. This can be done using OpenCV , dlib and Python. But for undereyes there was not any readily available model therefore for this facial landmark a custom-trained object detection model was used.&lt;/p&gt;
-&lt;p&gt;But to train the model data was required therefore the faces were downloaded from online sources such as unspalsh and google images and the undereyes were marked onto them. This was performed using &lt;a href=&#34;https://github.com/tzutalin/labelImg&#34;&gt;LabelImg&lt;/a&gt; which is an open source graphical image annotation tool.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;OpenCV&lt;/strong&gt; is a highly optimised library designed for real time applications. So what opencv does is that it converts the input image into numbers that can be understood using the &amp;ldquo;imread&amp;rdquo; function. So this image is fed and the necessary facial landmarks are cropped out. For detection of the face in general, eyes, nose , mouth we have used a pre-trained model readily available on the Internet.  This can be done using OpenCV , dlib and Python. You can read this &lt;a href=&#34;%22https://www.pyimagesearch.com/2017/04/10/detect-eyes-nose-lips-jaw-dlib-opencv-python/%22&#34;&gt;excellent tutorial&lt;/a&gt; from adrain pyimagesearch for facial extraction using dlib. But for undereyes there was not any readily available model therefore for this facial landmark a custom-trained object detection model was used.&lt;/p&gt;
+&lt;p&gt;But to train the model data was required therefore,  the faces were downloaded from online sources such as unspalsh and google images and the undereyes were marked onto them. This was performed using &lt;a href=&#34;https://github.com/tzutalin/labelImg&#34;&gt;LabelImg&lt;/a&gt; which is an open source graphical image annotation tool.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;LabelImg.JPG&#34; alt=&#34;LabelImg&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Then using the Tensorflow Object Detection API the new annotated data was used to train the model. The model used for training was inception-v2 with faster rcnn which are readily available for download in the tensorflow models repository. I have used this &lt;a href=&#34;https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10&#34;&gt;tutorial&lt;/a&gt; by Evan for performing this process. This tutorial explains all the underlying steps required to train your very own object detection model.&lt;/p&gt;
+&lt;p&gt;Then using the Tensorflow Object Detection API the new annotated data was used to train the model. The model used for training was inception-v2 with faster rcnn which are readily available for download in the tensorflow models repository.&lt;a href=&#34;%22http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz%22&#34;&gt;You can download this model here&lt;/a&gt;. Inception v2 here is used as a feature extractor. I have used this &lt;a href=&#34;https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10&#34;&gt;tutorial&lt;/a&gt; by Evan for performing this process. This tutorial explains all the underlying steps required to train your very own object detection model.&lt;/p&gt;
 &lt;p&gt;Some of the Images that were used for training the models are as follows:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;Images.JPG&#34; alt=&#34;Images&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;classificaton-phase&#34;&gt;Classificaton Phase&lt;/h3&gt;
-&lt;p&gt;After these individual images were cropped they were fed into classification models for training. These trained models would then be used later on for classifying new images. For the classification aspect of the facial cues &lt;strong&gt;EfficientNet&lt;/strong&gt; was used which is a very powerful architecture. Unlike traditional CNN architecture which scale network dimensions, such as width, depth and resolution EfficientNet uniformly scales each dimension with a fixed set of scaling coefficients. More details can be found in this &lt;a href=&#34;https://ai.googleblog.com/2019/05/efficientnet-improving-accuracy-and.html&#34;&gt;article&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;classification-phase&#34;&gt;Classification Phase&lt;/h3&gt;
+&lt;p&gt;After these individual images were cropped out they were fed into classification models for training. These trained models would then be used later on for classifying new images. For the classification aspect of the facial cues &lt;strong&gt;EfficientNet&lt;/strong&gt; was used which is a very powerful architecture. Unlike traditional CNN architecture which scale network dimensions, such as width, depth and resolution EfficientNet uniformly scales each dimension with a fixed set of scaling coefficients. More details can be found in this &lt;a href=&#34;https://ai.googleblog.com/2019/05/efficientnet-improving-accuracy-and.html&#34;&gt;article&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;efficientnet.JPG&#34; alt=&#34;EfficientNet&#34;&gt;&lt;/p&gt;
 &lt;p&gt;An image from the blog which talks about the various scaling approaches.&lt;/p&gt;
 &lt;h2 id=&#34;deployment-phase&#34;&gt;Deployment Phase&lt;/h2&gt;
 &lt;p&gt;For the deployment of the entire project the &lt;strong&gt;&amp;ldquo;Flask API&amp;rdquo;&lt;/strong&gt; was used. It is an open-source micro web framework written in Python that is widely used for deployment purposes. For the front end or UI of the web application HTML/CSS was used. After each model derives the final results were calculated as a weighted sum of the facial cues.&lt;/p&gt;
 &lt;p&gt;Some of the screenshots of the project can be found below:
-![Deprived Image](Deprived Image Uploaded.JPG)
+&lt;img src=&#34;Upload.JPG&#34; alt=&#34;Uploading Image&#34;&gt;
 &lt;img src=&#34;Result-D2.JPG&#34; alt=&#34;Result Image&#34;&gt;
 &lt;img src=&#34;Result-D3.JPG&#34; alt=&#34;Result Extra Image&#34;&gt;
 &lt;img src=&#34;Recon.JPG&#34; alt=&#34;Final Result Recommendation&#34;&gt;&lt;/p&gt;

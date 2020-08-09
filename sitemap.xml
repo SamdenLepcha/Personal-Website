@@ -73,28 +73,38 @@
   </url>
   
   <url>
+    <loc>/tags/deep-learning/</loc>
+    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/</loc>
+    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/blogs/pothole-detection-mask-rcnn/</loc>
+    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/</loc>
+    <lastmod>2020-07-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/courses/</loc>
     <lastmod>2019-05-05T00:00:00+01:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/deep-learning/</loc>
+    <loc>/tags/data-science/</loc>
     <lastmod>2019-04-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/project/deep-learning/</loc>
+    <loc>/blogs/fatigue-detection/</loc>
     <lastmod>2019-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/project/</loc>
-    <lastmod>2019-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/</loc>
-    <lastmod>2020-07-06T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -154,11 +164,6 @@
   
   <url>
     <loc>/blogs/getting-started/</loc>
-    <lastmod>2020-07-06T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/blogs/</loc>
     <lastmod>2020-07-06T00:00:00+00:00</lastmod>
   </url>
   
