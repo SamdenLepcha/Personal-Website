@@ -516,7 +516,6 @@
 <li>Dataset Gathering</li>
 <li>Model Training</li>
 <li>Deployment with Flask</li>
-<li>Mapping onto Google Maps</li>
 <li>Results</li>
 </ul>
 <h3 id="anaconda-environment-setup">Anaconda Environment Setup</h3>
@@ -674,13 +673,42 @@ I have taken the script provided by Gilber Tanner in his tutorial to perform thi
 <p>To test the newly trained classifer you can make changes to the already existing object_detection.ipynb file or use the eval.ipynb file present in my Github Repo.</p>
 <p>Change the directory location for the labelmap, inference_graph, .config file and the test_images directory based on your location. You should get the follwing output:</p>
 <p><img src="gallery/Test.JPG" alt="Testing Image"></p>
+<h3 id="deploying-with-flask">Deploying with Flask</h3>
+<p>Flask is a micro web framework written in Python developed by Armin Ronacher. We are going to use Flask to deploy our custom trained object detection model. You can find the beginner tutorial on their <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application">official documentation</a>.</p>
+<p>We are going to be using the code present in the object_detection.ipynb file in our Flask app. The code is called &ldquo;app.py&rdquo; which is also present in my Github repository. In the beginning our app.py file we import our libraries and append our Python Path where the object detection api is located. Change this according to the location you have placed this file.</p>
+<p>The simple architecture of the Flask App can be described using the image below.</p>
+<p><img src="gallery/Flask_Architecture.png" alt="Flask Architecture"></p>
+<p>We take the image as input to the Custom Trained Mask RCNN model which based on the accuracy score then decides whether to give the coordinates or not. You can run the &ldquo;app.py&rdquo; by running the below command.</p>
+<pre><code>python app.py
+</code></pre><p><img src="gallery/Flaskapp.JPG" alt="Flask App"></p>
+<p>After running the above command we should get the below output. Copy this onto your browser for the web application to render the HTML pages. I have made a terrible job of this. You guys can create better interfaces or a better UI for this project by messing around with the HTML and CSS files. You can find all the output images below in the results section.</p>
+<h3 id="results">Results</h3>
+<p>This section just contains the various output images of the project.</p>
+<ul>
+<li>This is the first page after copying the URL from Anaconda Prompt onto your browser of your choice.</li>
+</ul>
+<p><img src="gallery/FirstPage.JPG" alt="First Page"></p>
+<ul>
+<li>This is the page after selecting and uploading an image of your choice. *</li>
+</ul>
+<p><img src="gallery/Upload.JPG" alt="Upload Page"></p>
+<ul>
+<li>This is the page after clicking on the submit button. Notice how the button below appears only when the score is above is 50%.</li>
+</ul>
+<p><img src="gallery/ResultPage.JPG" alt="Results Page"></p>
+<ul>
+<li>After clicking on the button below the output result that states to get the current position. I have zoomed out the map quite a bit to not reveal my location but you can get really precise and zoomed in coordinates. You can try to setup an architecture where you maintain a location database online so that the page can display those coordinates but for the purpose of this project we are just displaying the current location where the image was uploaded. So the image has to be taken and uploaded at the same spot.</li>
+</ul>
+<p><img src="gallery/GoogleMaps.JPG" alt="Google Maps Page"></p>
 <h3 id="references">References</h3>
+<p>cl</p>
 <ol>
 <li>Over 9300 deaths, 25000 injured in 3 years due to potholes - <a href="https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24">India Today</a></li>
 <li>Nienaber, S &amp; Booysen, M.J. (Thinus) &amp; Kroon, RS. (2015). <a href="https://www.researchgate.net/publication/282807920_Dataset_of_images_used_for_pothole_detection?channel=doi&amp;linkId=561ccc7b08ae78721fa2b350&amp;showFulltext=true">Dataset of images used for pothole detection. 10.13140/RG.2.1.3646.1520</a></li>
 <li>How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU) on Windows 10 - <a href="https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10">Github</a></li>
 <li>Custom Mask RCNN using Tensorflow Object Detection API - <a href="https://medium.com/@vijendra1125/custom-mask-rcnn-using-tensorflow-object-detection-api-101149ce0765">Medium</a></li>
 <li>Train a Mask R-CNN model with the Tensorflow Object Detection API - <a href="https://gilberttanner.com/blog/train-a-mask-r-cnn-model-with-the-tensorflow-object-detection-api">Gilbert Tanner</a></li>
+<li>HTML Geolocation API - <a href="https://www.w3schools.com/html/html5_geolocation.asp">w3schools</a></li>
 </ol>
 
     </div>

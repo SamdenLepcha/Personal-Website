@@ -35,7 +35,6 @@
 &lt;li&gt;Dataset Gathering&lt;/li&gt;
 &lt;li&gt;Model Training&lt;/li&gt;
 &lt;li&gt;Deployment with Flask&lt;/li&gt;
-&lt;li&gt;Mapping onto Google Maps&lt;/li&gt;
 &lt;li&gt;Results&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;anaconda-environment-setup&#34;&gt;Anaconda Environment Setup&lt;/h3&gt;
@@ -193,13 +192,42 @@ I have taken the script provided by Gilber Tanner in his tutorial to perform thi
 &lt;p&gt;To test the newly trained classifer you can make changes to the already existing object_detection.ipynb file or use the eval.ipynb file present in my Github Repo.&lt;/p&gt;
 &lt;p&gt;Change the directory location for the labelmap, inference_graph, .config file and the test_images directory based on your location. You should get the follwing output:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;gallery/Test.JPG&#34; alt=&#34;Testing Image&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;deploying-with-flask&#34;&gt;Deploying with Flask&lt;/h3&gt;
+&lt;p&gt;Flask is a micro web framework written in Python developed by Armin Ronacher. We are going to use Flask to deploy our custom trained object detection model. You can find the beginner tutorial on their &lt;a href=&#34;https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application&#34;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We are going to be using the code present in the object_detection.ipynb file in our Flask app. The code is called &amp;ldquo;app.py&amp;rdquo; which is also present in my Github repository. In the beginning our app.py file we import our libraries and append our Python Path where the object detection api is located. Change this according to the location you have placed this file.&lt;/p&gt;
+&lt;p&gt;The simple architecture of the Flask App can be described using the image below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;gallery/Flask_Architecture.png&#34; alt=&#34;Flask Architecture&#34;&gt;&lt;/p&gt;
+&lt;p&gt;We take the image as input to the Custom Trained Mask RCNN model which based on the accuracy score then decides whether to give the coordinates or not. You can run the &amp;ldquo;app.py&amp;rdquo; by running the below command.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python app.py
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;gallery/Flaskapp.JPG&#34; alt=&#34;Flask App&#34;&gt;&lt;/p&gt;
+&lt;p&gt;After running the above command we should get the below output. Copy this onto your browser for the web application to render the HTML pages. I have made a terrible job of this. You guys can create better interfaces or a better UI for this project by messing around with the HTML and CSS files. You can find all the output images below in the results section.&lt;/p&gt;
+&lt;h3 id=&#34;results&#34;&gt;Results&lt;/h3&gt;
+&lt;p&gt;This section just contains the various output images of the project.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is the first page after copying the URL from Anaconda Prompt onto your browser of your choice.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;gallery/FirstPage.JPG&#34; alt=&#34;First Page&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is the page after selecting and uploading an image of your choice. *&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;gallery/Upload.JPG&#34; alt=&#34;Upload Page&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;This is the page after clicking on the submit button. Notice how the button below appears only when the score is above is 50%.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;gallery/ResultPage.JPG&#34; alt=&#34;Results Page&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;After clicking on the button below the output result that states to get the current position. I have zoomed out the map quite a bit to not reveal my location but you can get really precise and zoomed in coordinates. You can try to setup an architecture where you maintain a location database online so that the page can display those coordinates but for the purpose of this project we are just displaying the current location where the image was uploaded. So the image has to be taken and uploaded at the same spot.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;gallery/GoogleMaps.JPG&#34; alt=&#34;Google Maps Page&#34;&gt;&lt;/p&gt;
 &lt;h3 id=&#34;references&#34;&gt;References&lt;/h3&gt;
+&lt;p&gt;cl&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Over 9300 deaths, 25000 injured in 3 years due to potholes - &lt;a href=&#34;https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24&#34;&gt;India Today&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Nienaber, S &amp;amp; Booysen, M.J. (Thinus) &amp;amp; Kroon, RS. (2015). &lt;a href=&#34;https://www.researchgate.net/publication/282807920_Dataset_of_images_used_for_pothole_detection?channel=doi&amp;amp;linkId=561ccc7b08ae78721fa2b350&amp;amp;showFulltext=true&#34;&gt;Dataset of images used for pothole detection. 10.13140/RG.2.1.3646.1520&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;How To Train an Object Detection Classifier for Multiple Objects Using TensorFlow (GPU) on Windows 10 - &lt;a href=&#34;https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10&#34;&gt;Github&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Custom Mask RCNN using Tensorflow Object Detection API - &lt;a href=&#34;https://medium.com/@vijendra1125/custom-mask-rcnn-using-tensorflow-object-detection-api-101149ce0765&#34;&gt;Medium&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Train a Mask R-CNN model with the Tensorflow Object Detection API - &lt;a href=&#34;https://gilberttanner.com/blog/train-a-mask-r-cnn-model-with-the-tensorflow-object-detection-api&#34;&gt;Gilbert Tanner&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;HTML Geolocation API - &lt;a href=&#34;https://www.w3schools.com/html/html5_geolocation.asp&#34;&gt;w3schools&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>
