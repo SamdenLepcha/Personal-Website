@@ -116,9 +116,9 @@
   <meta property="og:description" content="This was a deep learning project to detect potholes on roads and map them onto Google Maps."><meta property="og:image" content="/blogs/pothole-detection-mask-rcnn/featured.jpg">
   <meta property="twitter:image" content="/blogs/pothole-detection-mask-rcnn/featured.jpg"><meta property="og:locale" content="en-us">
   
-  <meta property="article:published_time" content="2020-07-13T00:00:00&#43;00:00">
+  <meta property="article:published_time" content="2020-08-19T00:00:00&#43;00:00">
   
-  <meta property="article:modified_time" content="2020-07-13T00:00:00&#43;00:00">
+  <meta property="article:modified_time" content="2020-08-19T00:00:00&#43;00:00">
   
 
   
@@ -353,8 +353,8 @@
 
 
 
-<meta content="2020-07-13 00:00:00 &#43;0000 UTC" itemprop="datePublished">
-<meta content="2020-07-13 00:00:00 &#43;0000 UTC" itemprop="dateModified">
+<meta content="2020-08-19 00:00:00 &#43;0000 UTC" itemprop="datePublished">
+<meta content="2020-08-19 00:00:00 &#43;0000 UTC" itemprop="dateModified">
 
 <div class="article-metadata">
 
@@ -367,7 +367,7 @@
     
       
     
-    <time>Jul 13, 2020</time>
+    <time>Aug 19, 2020</time>
   </span>
   
 
@@ -501,7 +501,7 @@
     <div class="article-style" itemprop="articleBody">
       <h3 id="background">Background</h3>
 <p>According to Wikipedia &ldquo;A pothole is a depression in a road surface, usually asphalt pavement, where traffic has removed broken pieces of the pavement&rdquo;. Edmonton the &ldquo;self proclaimed pothole capital&rdquo; in Alberta, Canada reportedly spends $4.8 million on 450,000 potholes annually, as of 2015. In India every year approximately 1100 lives are lost to accidents caused by potholes <a href="https://www.indiatoday.in/india/story/over-9300-deaths-25000-injured-in-3-years-due-to-potholes-1294147-2018-07-24">source</a>. Ordinary citizens do not have the means of communicating or reporting the bad roads to the concerned authorities while the authorities lay unaware of the situation.</p>
-<p>Therefore, several organisations have been trying to develop tools (like webapps) where the citizens can report the potholes to the concerned authorities. There are several hackathons that have taken place with this project in mind as one of the objectives. Seeing this as a growing concern, in this project to address this problem the aim is to <strong>Develop a simple interface that uses the state of the art object detection technology to detect potholes in real time and report them using Google Maps</strong>. This article will take you through the steps required to build your very own pothole detection system. The deployment medium for this project will be on smartphones which are used by 500 million+ people in India according to Newzoo&rsquo;s 2019 Global Mobile Market Report.</p>
+<p>Therefore, several organizations have been trying to develop tools (like web-apps) where the citizens can report the potholes to the concerned authorities. There are several hackathons that have taken place with this project in mind as one of the objectives. Seeing this as a growing concern, in this project to address this problem the aim is to <strong>Develop a simple interface that uses the state of the art object detection technology to detect potholes in real time and report them using Google Maps</strong>. This article will take you through the steps required to build your very own pothole detection system. The deployment medium for this project will be on smartphones which are used by 500 million+ people in India according to Newzoo&rsquo;s 2019 Global Mobile Market Report.</p>
 <p>Tools Used:</p>
 <ul>
 <li>Python 3.6+</li>
@@ -544,21 +544,21 @@
 (pothole) C:\Users&gt;pip install opencv-python
 (pothole) C:\Users&gt;pip install labelme
 (pothole) C:\Users&gt;pip install tensorflow-gpu==1.13.1
-(pothole) C:\Users&gt;pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 </code></pre><ol start="4">
 <li>Clone or download the tensorflow object detection api repostiory from Github. For the purpose of this project we are using tensorflow version 1.13.1. <strong>Note Always make sure the tensorflow version installed and the tensorflow object detection api repository version is the same</strong>. Run the following command or download this <a href="https://github.com/tensorflow/models/tree/r1.13.0">repository</a> manually.</li>
 </ol>
 <pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;git clone https://github.com/tensorflow/models/tree/r1.13.0.git
 </code></pre><p>Place these folders in a folder called &ldquo;models&rdquo;. You can place this &ldquo;models&rdquo; folder in a directory of your choice.</p>
 <ol start="5">
-<li>Configure the PYTHONPATH environment variable:</li>
+<li>Configure the PYTHONPATH environment variable and Install the COCO api:</li>
 </ol>
 <pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;set PYTHONPATH=C:\models;C:\models\research;C:\models\research\slim
+(pothole) C:\Users&gt;pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
 </code></pre><p>Change the directory location based on where you have store the models folder.</p>
 <ol start="6">
 <li>Compile Protobufs and run setup.py</li>
 </ol>
-<p>In the Ananconda Prompt change directories to \models\research directory:</p>
+<p>In the Anaconda Prompt change directories to \models\research directory:</p>
 <pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt;cd C:\models\research
 </code></pre><ol start="7">
 <li>Run the following lines of code:</li>
@@ -574,7 +574,8 @@
 </ol>
 <pre><code class="language-{r" data-lang="{r">(pothole) C:\models\research&gt;cd object_detection
 (pothole) C:\models\research\object_detection&gt;jupyter notebook object_detection_tutorial.ipynb
-</code></pre><h3 id="dataset-gathering">Dataset Gathering</h3>
+</code></pre><p>You can download my <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN">Github repository</a> for the supporting material for this tutorial.</p>
+<h3 id="dataset-gathering">Dataset Gathering</h3>
 <p>As always in the beginning of any Data Science or AI Project after the problem statement has been identified we move on to gathering the data or in this case images for training.</p>
 <p>To train a robust model we need to use a lot of pictures but with variation as well. That means the potholes must be present at various angles or shapes so that our model does not lean on to one variation or in other words overfits and does not generalise for other images.</p>
 <p>You can use the images that you have taken personally or download them from the Internet like me. For this project the idea is to detect potholes so we would not be segmenting them out based on severity but that does leave something for future scope as well. The following data sources were used for building this project:</p>
@@ -584,8 +585,8 @@
 </ul>
 <p>Some of the Images used in this dataset looks this:
 <img src="gallery/Dataset.jpg" alt="Some of the Images in the dataset"></p>
-<p>We need to resize the images so that the model can be train using these resized images like 800 x 600 in this project (Unless you have unlimited GPU compute power). Use either the command prompt or anaconda prompt or any other IDE to run this script. For example in Anaconda Prompt:</p>
-<pre><code class="language-{r" data-lang="{r">(base) C:\Users&gt; python DatasetCreation.py
+<p>We need to resize the images so that the model can be train using these resized images like 800 x 600 in this project (Unless you have unlimited GPU compute power). Use either the command prompt or anaconda prompt or any other IDE to run <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN/blob/master/DatasetCreation.py">this script</a>. For example in Anaconda Prompt:</p>
+<pre><code class="language-{r" data-lang="{r">(pothole) C:\Users&gt; python DatasetCreation.py
 </code></pre><p>The above mentioned script is available is in my Github Repo. This script will resize all the images in your directory and also perform random Train/Test Split with 80/20 splitting criteria. Now place these images inside models/research/object_detection/images to have all the data for this project in one place.</p>
 <h3 id="data-labeling">Data Labeling</h3>
 <p>Now that we have gathered the dataset we need to label the images so that the model understands what is a pothole. To label the images we need a labeling software.</p>
@@ -598,10 +599,10 @@
 <li>Create TFRecords:</li>
 </ol>
 <p>After labeling our entire dataset we now have to generate TFRecords which serves as input for our model training. But before that we need to convert the json labelme labels into COCO format. 
-I have taken the script provided by Gilber Tanner in his tutorial to perform this. You can also find this in my Github Repository labeled &ldquo;labelme2coco.py&rdquo;. Download this and place it onto the directory where your Train/ Test images are located. Now run the following commands:</p>
+I have taken the script provided by Gilber Tanner in his tutorial to perform this. You can also find this in my Github Repository labeled <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN/blob/master/place_in_object_detection/images/labelme2coco.py">&ldquo;labelme2coco.py&rdquo;</a>. Download this and place it onto the directory where your Train/ Test images are located. Now run the following commands:</p>
 <pre><code class="language-{r" data-lang="{r">(pothole) C:\Users\models\research\object_detection\images&gt;python labelme2coco.py train --output train.json
 (pothole) C:\Users\models\research\object_detection\images&gt;python labelme2coco.py test --output test.json
-</code></pre><p>Now that the train/test data is in the COCO format we can now create the TFRecords using the create_coco_tf_record.py also created by Gilber Tanner. This script also needs to be placed and run from the object_detection folder.</p>
+</code></pre><p>Now that the train/test data is in the COCO format we can now create the TFRecords using the <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN/blob/master/place_in_object_detection/create_coco_tf_record.py">create_coco_tf_record.py</a> also created by Gilbert Tanner. This script also needs to be placed and run from the object_detection folder.</p>
 <pre><code class="language-{r" data-lang="{r">python create_coco_tf_record.py --logtostderr --train_image_dir=images/train --test_image_dir=images/test --train_annotations_file=images/train.json --test_annotations_file=images/test.json --include_masks=True --output_dir=./
 </code></pre><p>You should find train.record and test.record in your object_detection folder.</p>
 <ol start="2">
@@ -639,8 +640,7 @@ I have taken the script provided by Gilber Tanner in his tutorial to perform thi
 </ul>
 <pre><code>input_path: &quot;&lt;path&gt;/models/research/object_detection/train.record&quot;
 </code></pre><ul>
-<li>Line 158: Change input_path to the path of the test.records file:
-`</li>
+<li>Line 158: Change input_path to the path of the test.records file:</li>
 </ul>
 <pre><code>input_path: &quot;&lt;path&gt;/models/research/object_detection/test.record&quot;
 </code></pre><ul>
@@ -670,12 +670,12 @@ I have taken the script provided by Gilber Tanner in his tutorial to perform thi
 <ol start="6">
 <li>Testing the newly trained classifier</li>
 </ol>
-<p>To test the newly trained classifer you can make changes to the already existing object_detection.ipynb file or use the eval.ipynb file present in my Github Repo.</p>
+<p>To test the newly trained classifer you can make changes to the already existing <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN/blob/master/place_in_object_detection/object_detection_tutorial.ipynb">object_detection.ipynb</a> file present in my Github Repo.</p>
 <p>Change the directory location for the labelmap, inference_graph, .config file and the test_images directory based on your location. You should get the follwing output:</p>
 <p><img src="gallery/Test.JPG" alt="Testing Image"></p>
 <h3 id="deploying-with-flask">Deploying with Flask</h3>
 <p>Flask is a micro web framework written in Python developed by Armin Ronacher. We are going to use Flask to deploy our custom trained object detection model. You can find the beginner tutorial on their <a href="https://flask.palletsprojects.com/en/1.1.x/quickstart/#a-minimal-application">official documentation</a>.</p>
-<p>We are going to be using the code present in the object_detection.ipynb file in our Flask app. The code is called &ldquo;app.py&rdquo; which is also present in my Github repository. In the beginning our app.py file we import our libraries and append our Python Path where the object detection api is located. Change this according to the location you have placed this file.</p>
+<p>We are going to be using the code present in the object_detection.ipynb file in our Flask app. The code is called <a href="https://github.com/SamdenLepcha/Pothole-Detection-With-Mask-R-CNN/blob/master/app.py">&ldquo;app.py&rdquo;</a> which is also present in my Github repository. In the beginning our app.py file we import our libraries and append our Python Path where the object detection api is located. Change this according to the location you have placed this file.</p>
 <p>The simple architecture of the Flask App can be described using the image below.</p>
 <p><img src="gallery/Flask_Architecture.png" alt="Flask Architecture"></p>
 <p>We take the image as input to the Custom Trained Mask RCNN model which based on the accuracy score then decides whether to give the coordinates or not. You can run the &ldquo;app.py&rdquo; by running the below command.</p>
@@ -689,7 +689,7 @@ I have taken the script provided by Gilber Tanner in his tutorial to perform thi
 </ul>
 <p><img src="gallery/FirstPage.JPG" alt="First Page"></p>
 <ul>
-<li>This is the page after selecting and uploading an image of your choice. *</li>
+<li>This is the page after selecting and uploading an image of your choice.</li>
 </ul>
 <p><img src="gallery/Upload.JPG" alt="Upload Page"></p>
 <ul>
